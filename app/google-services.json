@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "645186656082",
+    "project_id": "mysknext-app",
+    "storage_bucket": "mysknext-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645186656082:android:1ea044e173797089994c8b",
+        "android_client_info": {
+          "package_name": "com.colstu.mysknext"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvgmF_YBXHVT-8--O1zrbcGDjddOgUsCs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
