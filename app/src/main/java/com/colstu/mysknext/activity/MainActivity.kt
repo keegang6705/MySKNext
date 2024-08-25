@@ -1,38 +1,36 @@
 package com.colstu.mysknext.activity
 
-import android.content.Context
 import android.os.Bundle
-import android.webkit.WebView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import com.colstu.mysknext.ui.theme.MySKNextTheme
-
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        WebView.setWebContentsDebuggingEnabled(true);
         setContent {
-            MySKNextTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MainScreen(LocalContext.current, innerPadding)
-                }
-            }
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build()
+
+            val googleSignInClient = GoogleSignIn.getClient(this, gso)
+            val googleAccount = GoogleSignIn.getLastSignedInAccount(this)
+
+            val googleUsername = googleAccount?.displayName ?: "User"
+
+            MainScreen(googleUsername = googleUsername, innerPadding = PaddingValues())
         }
     }
 }
 
 @Composable
-fun MainScreen(context: Context, innerPadding: PaddingValues) {
+fun MainScreen(googleUsername: String, innerPadding: PaddingValues) {
+    Text(text = "Hello, $googleUsername")
 }
+
 
 
