@@ -51,45 +51,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen(innerPadding: PaddingValues) {
- WebViewScreen(url = "www.mysk.school")
 }
-@Composable
-fun WebViewScreen(url: String) {
-    AndroidView(factory = { context ->
 
-        WebView(context).apply {
-            settings.domStorageEnabled = true
-            settings.javaScriptEnabled = true
-            settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-            settings.setSupportMultipleWindows(true)
-            settings.javaScriptCanOpenWindowsAutomatically = true
-            settings.allowFileAccess = true
-            settings.allowContentAccess = true
-            settings.mediaPlaybackRequiresUserGesture = false
-            settings.domStorageEnabled = true
-            settings.cacheMode = WebSettings.LOAD_DEFAULT
-            settings.userAgentString = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36";
-
-            webViewClient = object : WebViewClient() {
-                override fun onPageFinished(view: WebView?, url: String?) {
-                    view?.evaluateJavascript(
-                                "document.getElementById('button-google-sign-in').innerHTML = '<button id=\"custom-sign-in\" style=\"width: 100%; height: 100%; margin: 0; padding: 0; display: flex; align-items: center; justify-content: center; text-align: center;\">it is not available now</button>';"+
-                       "",
-                        null
-                    )
-                }
-                override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                    view?.loadUrl(request?.url.toString())
-                    return true
-                }
-            }
-            webChromeClient = WebChromeClient()
-            val cookieManager = android.webkit.CookieManager.getInstance()
-            cookieManager.setAcceptCookie(true)
-            cookieManager.setAcceptThirdPartyCookies(WebView(context), true)
-
-            loadUrl(url)
-        }
-    }, modifier = Modifier.fillMaxSize())
-}
 
