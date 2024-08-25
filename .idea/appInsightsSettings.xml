@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.keegang.mysknext" />
+                  <option name="mobileSdkAppId" value="1:645186656082:android:45d7643430a19896994c8b" />
+                  <option name="projectId" value="mysknext-app" />
+                  <option name="projectNumber" value="645186656082" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
