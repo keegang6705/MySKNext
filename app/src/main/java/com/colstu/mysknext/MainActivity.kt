@@ -20,9 +20,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import com.colstu.mysknext.ui.theme.MySKNextTheme
+import android.content.Intent
+import android.util.Log
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.viewinterop.AndroidView
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -44,6 +56,7 @@ fun MainScreen(innerPadding: PaddingValues) {
 @Composable
 fun WebViewScreen(url: String) {
     AndroidView(factory = { context ->
+
         WebView(context).apply {
             settings.domStorageEnabled = true
             settings.javaScriptEnabled = true
@@ -52,7 +65,11 @@ fun WebViewScreen(url: String) {
             settings.javaScriptCanOpenWindowsAutomatically = true
             settings.allowFileAccess = true
             settings.allowContentAccess = true
+            settings.mediaPlaybackRequiresUserGesture = false
+            settings.domStorageEnabled = true
+            settings.cacheMode = WebSettings.LOAD_DEFAULT
             settings.userAgentString = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36";
+
             webViewClient = object : WebViewClient() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     view?.evaluateJavascript(
@@ -61,8 +78,16 @@ fun WebViewScreen(url: String) {
                         null
                     )
                 }
+                override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                    view?.loadUrl(request?.url.toString())
+                    return true
+                }
             }
             webChromeClient = WebChromeClient()
+            val cookieManager = android.webkit.CookieManager.getInstance()
+            cookieManager.setAcceptCookie(true)
+            cookieManager.setAcceptThirdPartyCookies(WebView(context), true)
+
             loadUrl(url)
         }
     }, modifier = Modifier.fillMaxSize())
