@@ -9,7 +9,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.colstu.mysknext"
+        applicationId = "com.keegang.mysknext"
         minSdk = 28
         targetSdk = 34
         versionCode = 1

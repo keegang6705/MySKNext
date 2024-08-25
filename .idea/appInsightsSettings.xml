@@ -8,8 +8,8 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.colstu.mysknext" />
-                  <option name="mobileSdkAppId" value="1:645186656082:android:1ea044e173797089994c8b" />
+                  <option name="appId" value="com.keegang.mysknext" />
+                  <option name="mobileSdkAppId" value="1:645186656082:android:45d7643430a19896994c8b" />
                   <option name="projectId" value="mysknext-app" />
                   <option name="projectNumber" value="645186656082" />
                 </ConnectionSetting>
