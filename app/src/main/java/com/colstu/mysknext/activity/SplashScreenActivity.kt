@@ -1,7 +1,7 @@
 package com.colstu.mysknext.activity
 
+import android.content.Context
 import android.os.Bundle
-import android.webkit.WebView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import com.colstu.mysknext.ui.theme.MySKNextTheme
 
 
@@ -18,11 +19,10 @@ class SplashScreenActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        WebView.setWebContentsDebuggingEnabled(true);
         setContent {
             MySKNextTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    SplashScreen(innerPadding)
+                    SplashScreen(LocalContext.current, innerPadding)
                 }
             }
         }
@@ -30,7 +30,7 @@ class SplashScreenActivity : ComponentActivity() {
 }
 
 @Composable
-fun SplashScreen(innerPadding: PaddingValues) {
+fun SplashScreen(context: Context, innerPadding: PaddingValues) {
 }
 
 

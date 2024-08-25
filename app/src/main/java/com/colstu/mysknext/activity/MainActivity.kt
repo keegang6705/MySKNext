@@ -1,5 +1,6 @@
 package com.colstu.mysknext.activity
 
+import android.content.Context
 import android.os.Bundle
 import android.webkit.WebView
 import androidx.activity.ComponentActivity
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import com.colstu.mysknext.ui.theme.MySKNextTheme
 
 
@@ -22,7 +24,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MySKNextTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MainScreen(innerPadding)
+                    MainScreen(LocalContext.current, innerPadding)
                 }
             }
         }
@@ -30,7 +32,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(innerPadding: PaddingValues) {
+fun MainScreen(context: Context, innerPadding: PaddingValues) {
 }
 
 
